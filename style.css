@@ -1,3 +1,269 @@
+/* 年間目標削除モーダル */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  padding: 28px 24px 20px 24px;
+  min-width: 260px;
+  max-width: 90vw;
+  text-align: center;
+}
+.modal-message {
+  font-size: 16px;
+  margin-bottom: 18px;
+  color: #333;
+}
+.modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+.modal-actions button {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  background: #f0f0f0;
+  color: #333;
+  transition: background 0.2s;
+}
+.modal-actions button:hover {
+  background: #e0e0e0;
+}
+.modal-actions .danger {
+  background: #e74c3c;
+  color: #fff;
+}
+.modal-actions .danger:hover {
+  background: #c0392b;
+}
+#goal-input, #goal-float-input {
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s;
+}
+#goal-input:focus, #goal-float-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+/* 年間目標パネル（PC用） */
+#annual-goals-panel {
+  width: 280px;
+  background: #f7f7fb;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.07);
+  padding: 18px 14px 18px 18px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+#annual-goals-panel h2 {
+  font-size: 18px;
+  margin: 0 0 12px;
+  color: #667eea;
+}
+#goal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#goal-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+#goal-list li:last-child {
+  border-bottom: none;
+}
+#goal-list .goal-text {
+  flex: 1;
+  color: #333;
+  font-weight: 500;
+  word-break: break-word;
+}
+#goal-list .goal-done {
+  text-decoration: line-through;
+  color: #aaa;
+}
+#goal-list button {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+#goal-list button:hover {
+  background: #c0392b;
+}
+
+/* 年間目標フローティングバー（スマホ用） */
+.goal-fab {
+  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: #667eea;
+  color: #fff;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.18);
+  font-size: 32px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  cursor: pointer;
+  display: flex;
+  transition: background 0.2s;
+}
+.goal-fab:hover {
+  background: #5568d3;
+}
+.goal-float-panel {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 24px rgba(102, 126, 234, 0.18);
+  z-index: 1002;
+  padding: 18px 16px 24px 16px;
+  min-height: 220px;
+  max-height: 60vh;
+  overflow-y: auto;
+  animation: slideUp 0.25s;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.goal-float-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.goal-float-header span {
+  font-size: 18px;
+  color: #667eea;
+  font-weight: 600;
+}
+.goal-float-header button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #aaa;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+.goal-float-header button:hover {
+  color: #e74c3c;
+}
+#goal-float-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#goal-float-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+#goal-float-list li:last-child {
+  border-bottom: none;
+}
+#goal-float-list .goal-text {
+  flex: 1;
+  color: #333;
+  font-weight: 500;
+  word-break: break-word;
+}
+#goal-float-list .goal-done {
+  text-decoration: line-through;
+  color: #aaa;
+}
+#goal-float-list button {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+#goal-float-list button:hover {
+  background: #c0392b;
+}
+
+/* レイアウト全体 */
+.layout {
+  display: flex;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 700px) {
+  .layout {
+    flex-direction: column;
+    gap: 0;
+    max-width: 100vw;
+  }
+  #annual-goals-panel {
+    display: none;
+  }
+  .goal-fab {
+    display: flex;
+  }
+  .goal-float-panel {
+    display: none;
+  }
+  .goal-float-panel.active {
+    display: block;
+  }
+  .app {
+    max-width: 100vw;
+    margin: 0;
+  }
+}
+@media (min-width: 701px) {
+  .goal-fab, .goal-float-panel {
+    display: none !important;
+  }
+  #annual-goals-panel {
+    display: flex;
+  }
+}
 body { 
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; 
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
