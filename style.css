@@ -325,16 +325,21 @@ h1 {
 .form-group:last-child {
   margin-bottom: 0;
 }
-#todo-input { 
+/* Todo入力欄・年間目標入力欄 共通デザイン */
+#todo-input, #goal-input, #goal-float-input {
   flex: 1;
   padding: 10px;
   font-size: 16px;
+  font-family: inherit;
   border: 1px solid #ddd;
   border-radius: 6px;
   outline: none;
   transition: border 0.2s;
+  background: #fff;
+  color: #222;
+  box-sizing: border-box;
 }
-#todo-input:focus {
+#todo-input:focus, #goal-input:focus, #goal-float-input:focus {
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
