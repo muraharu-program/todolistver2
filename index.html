@@ -33,19 +33,21 @@
       <ul id="todo-list"></ul>
     </div>
     <!-- スマホ用フローティングバー -->
-    <div id="goal-fab" class="goal-fab" title="年間目標を開く">🎯</div>
-    <div id="goal-float-panel" class="goal-float-panel">
-      <div class="goal-float-header">
+    <div id="goal-float-bar" class="goal-float-bar minimized">
+      <div class="goal-float-bar-header">
         <span>年間目標</span>
-        <button id="goal-float-close" title="閉じる">✕</button>
+        <button id="goal-float-expand" class="goal-float-toggle" title="開く">∧</button>
+        <button id="goal-float-collapse" class="goal-float-toggle" title="閉じる" style="display:none;">∨</button>
       </div>
-      <form id="goal-float-form">
-        <div class="form-group">
-          <input id="goal-float-input" placeholder="新しい目標を入力" autocomplete="off" />
-          <button type="submit">追加</button>
-        </div>
-      </form>
-      <ul id="goal-float-list"></ul>
+      <div class="goal-float-bar-body" style="display:none;">
+        <form id="goal-float-form">
+          <div class="form-group">
+            <input id="goal-float-input" placeholder="新しい目標を入力" autocomplete="off" />
+            <button type="submit">追加</button>
+          </div>
+        </form>
+        <ul id="goal-float-list"></ul>
+      </div>
     </div>
   </div>
   <!-- 年間目標削除モーダル -->
