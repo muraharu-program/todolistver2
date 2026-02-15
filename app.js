@@ -18,10 +18,11 @@ const goalForm = document.getElementById('goal-form');
 const goalInput = document.getElementById('goal-input');
 const goalList = document.getElementById('goal-list');
 
-// --- 年間目標リスト要素（スマホ） ---
-const goalFab = document.getElementById('goal-fab');
-const goalFloatPanel = document.getElementById('goal-float-panel');
-const goalFloatClose = document.getElementById('goal-float-close');
+// --- 年間目標リスト要素（スマホ新UI） ---
+const goalFloatBar = document.getElementById('goal-float-bar');
+const goalFloatExpand = document.getElementById('goal-float-expand');
+const goalFloatCollapse = document.getElementById('goal-float-collapse');
+const goalFloatBarBody = goalFloatBar ? goalFloatBar.querySelector('.goal-float-bar-body') : null;
 const goalFloatForm = document.getElementById('goal-float-form');
 const goalFloatInput = document.getElementById('goal-float-input');
 const goalFloatList = document.getElementById('goal-float-list');
@@ -138,7 +139,7 @@ function renderGoals() {
   });
 }
 
-// 年間目標リストの描画（スマホ・フローティング）
+// 年間目標リストの描画（スマホ・フローティングバー新UI）
 function renderGoalsFloat() {
   if (!goalFloatList) return;
   goalFloatList.innerHTML = '';
@@ -189,15 +190,29 @@ if (goalFloatForm) {
   });
 }
 
-// フローティングバー開閉制御
-if (goalFab && goalFloatPanel) {
-  goalFab.addEventListener('click', () => {
-    goalFloatPanel.classList.add('active');
+
+// 新スマホ用フローティングバー開閉制御
+if (goalFloatBar && goalFloatExpand && goalFloatCollapse && goalFloatBarBody) {
+  // 初期状態: minimized
+  goalFloatBar.classList.add('minimized');
+  goalFloatBar.classList.remove('expanded');
+  goalFloatBarBody.style.display = 'none';
+  goalFloatExpand.style.display = 'inline-flex';
+  goalFloatCollapse.style.display = 'none';
+
+  goalFloatExpand.addEventListener('click', () => {
+    goalFloatBar.classList.remove('minimized');
+    goalFloatBar.classList.add('expanded');
+    goalFloatBarBody.style.display = 'block';
+    goalFloatExpand.style.display = 'none';
+    goalFloatCollapse.style.display = 'inline-flex';
   });
-}
-if (goalFloatClose && goalFloatPanel) {
-  goalFloatClose.addEventListener('click', () => {
-    goalFloatPanel.classList.remove('active');
+  goalFloatCollapse.addEventListener('click', () => {
+    goalFloatBar.classList.add('minimized');
+    goalFloatBar.classList.remove('expanded');
+    goalFloatBarBody.style.display = 'none';
+    goalFloatExpand.style.display = 'inline-flex';
+    goalFloatCollapse.style.display = 'none';
   });
 }
 
