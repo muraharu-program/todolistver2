@@ -57,10 +57,39 @@
   border-radius: 6px;
   outline: none;
   transition: border 0.2s;
+  height: 40px;
+  box-sizing: border-box;
 }
 #goal-input:focus, #goal-float-input:focus {
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* 年間目標フォームのボタンもtodoリストと同じ高さ・横並びに */
+#goal-form .form-group, #goal-float-form .form-group {
+  flex-direction: row;
+  align-items: stretch;
+  gap: 8px;
+}
+#goal-form button[type="submit"], #goal-float-form button[type="submit"] {
+  height: auto;
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 500;
+  background: #667eea;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+#goal-form button[type="submit"]:hover, #goal-float-form button[type="submit"]:hover {
+  background: #5568d3;
 }
 /* 年間目標パネル（PC用） */
 #annual-goals-panel {
