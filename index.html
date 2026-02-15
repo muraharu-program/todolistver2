@@ -7,19 +7,56 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
-    <h1>Todoリスト</h1>
-    <form id="todo-form">
-      <div class="form-group">
-        <input id="todo-input" placeholder="新しいタスクを入力" autocomplete="off" />
-        <button id="voice-btn" type="button" title="音声入力">🎤</button>
+  <div class="layout">
+    <aside id="annual-goals-panel">
+      <h2>年間目標</h2>
+      <form id="goal-form">
+        <div class="form-group">
+          <input id="goal-input" placeholder="新しい目標を入力" autocomplete="off" />
+          <button type="submit">追加</button>
+        </div>
+      </form>
+      <ul id="goal-list"></ul>
+    </aside>
+    <div class="app">
+      <h1>Todoリスト</h1>
+      <form id="todo-form">
+        <div class="form-group">
+          <input id="todo-input" placeholder="新しいタスクを入力" autocomplete="off" />
+          <button id="voice-btn" type="button" title="音声入力">🎙️</button>
+        </div>
+        <div class="form-group">
+          <input id="deadline-input" type="datetime-local" />
+          <button type="submit">追加</button>
+        </div>
+      </form>
+      <ul id="todo-list"></ul>
+    </div>
+    <!-- スマホ用フローティングバー -->
+    <div id="goal-fab" class="goal-fab" title="年間目標を開く">🎯</div>
+    <div id="goal-float-panel" class="goal-float-panel">
+      <div class="goal-float-header">
+        <span>年間目標</span>
+        <button id="goal-float-close" title="閉じる">✕</button>
       </div>
-      <div class="form-group">
-        <input id="deadline-input" type="datetime-local" />
-        <button type="submit">追加</button>
+      <form id="goal-float-form">
+        <div class="form-group">
+          <input id="goal-float-input" placeholder="新しい目標を入力" autocomplete="off" />
+          <button type="submit">追加</button>
+        </div>
+      </form>
+      <ul id="goal-float-list"></ul>
+    </div>
+  </div>
+  <!-- 年間目標削除モーダル -->
+  <div id="goal-delete-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-message">本当に削除しますか？</div>
+      <div class="modal-actions">
+        <button id="goal-modal-cancel">キャンセル</button>
+        <button id="goal-modal-delete" class="danger">削除</button>
       </div>
-    </form>
-    <ul id="todo-list"></ul>
+    </div>
   </div>
   <script src="app.js"></script>
 </body>
